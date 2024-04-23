@@ -17,14 +17,6 @@ const HomeWatchlistItem = ({ item }) => {
     const [coin, setCoin] = useState(null);
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
-    let textColorClass;
-    if (coin.market_data.price_change_percentage_24h > 0) {
-        textColorClass = 'text-success';
-    } else if (coin.market_data.price_change_percentage_24h < 0) {
-        textColorClass = 'text-danger';
-    } else {
-        textColorClass = 'text-secondary';
-    }
 
     useEffect(() => {
         fetch(`${COINGECKO_API_BASE_URL}/${item.coinID}`)
@@ -47,6 +39,15 @@ const HomeWatchlistItem = ({ item }) => {
 
     if (error) {
         return <div>Error: {error.message}</div>;
+    }
+
+    let textColorClass;
+    if (coin.market_data.price_change_percentage_24h > 0) {
+        textColorClass = 'text-success';
+    } else if (coin.market_data.price_change_percentage_24h < 0) {
+        textColorClass = 'text-danger';
+    } else {
+        textColorClass = 'text-secondary';
     }
 
     return (
