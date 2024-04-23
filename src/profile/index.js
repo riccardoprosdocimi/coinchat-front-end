@@ -10,14 +10,14 @@ import moment from "moment";
 import {getCommentsByAuthorIDThunk} from "../services/comment-thunk";
 import BlogListItem from "../blog-list-screen/blog-list-item";
 import {findBlogByAuthorIDThunk} from "../services/blog-thunk";
-import {input} from "@testing-library/user-event/dist/cjs/event.js";
 
 // https://stackoverflow.com/questions/8358084/regular-expression-to-reformat-a-us-phone-number-in-javascript
 let formatPhoneNumber = (str) => {
     //Filter only numbers from the input
-    ('' + str).replace(/\D/g, '');
+    let cleaned = ('' + str).replace(/\D/g, '');
+
     //Check if the input is of correct
-    let match = /^(1)(\d{3})(\d{3})(\d{4})$|^(\d{3})(\d{3})(\d{4})$/.exec(input);
+    let match = /^(1)?(\d{3})(\d{3})(\d{4})$/.exec(cleaned);
 
     if (match) {
         //Remove the matched extension code
@@ -226,23 +226,23 @@ const Profile = () => {
                             {
                                 following?.filter(f => f.followee !== null).map(
                                     follow =>
-                                        <Link to={`/profile/${follow.followee?._id}`}
-                                              className='list-group-item' key={follow.followee?._id}>
-                                            <div className='row'>
-                                                <div className='col-1'>
-                                                    <img
-                                                        src={`/images/p${follow.followee?.avatar}.jpg`}
-                                                        alt=""
-                                                        className='rounded-circle pt-2 w-100'/>
-                                                </div>
-                                                <div className='col pt-2 fs-3 fw-bold'>
-                                                    {follow.followee?.firstName} {follow.followee?.lastName}
-                                                    <div
-                                                        className='fs-5 text-secondary fw-normal'>
-                                                        @{follow.followee?.handle}
-                                                    </div>
-                                                </div>
-                                            </div>
+                                        <Link to={`/profile/${follow.followee._id}`}
+                                            className='list-group-item' key={follow.followee._id}>
+                                          <div className='row'>
+                                              <div className='col-1'>
+                                                  <img
+                                                      src={`/images/p${follow.followee.avatar}.jpg`}
+                                                      alt=""
+                                                      className='rounded-circle pt-2 w-100'/>
+                                              </div>
+                                              <div className='col pt-2 fs-3 fw-bold'>
+                                                  {follow.followee.firstName} {follow.followee.lastName}
+                                                  <div
+                                                      className='fs-5 text-secondary fw-normal'>
+                                                      @{follow.followee.handle}
+                                                  </div>
+                                              </div>
+                                          </div>
                                         </Link>
                                 )
                             }
