@@ -1,4 +1,4 @@
-# [CoinChat](https://coinchat.netlify.app/)
+# CoinChat
 
 ## Authors:
 - Riccardo Prosdocimi
