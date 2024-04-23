@@ -1,0 +1,29 @@
+[
+  {
+    "_id": 123,
+    "coinId": "bitcoin",
+    "symbol": "https://assets.coingecko.com/coins/images/1/thumb/bitcoin.png?1547033579",
+    "coin": "BTC",
+    "comment": "Donec sed posuere elit. Curabitur a luctus mauris. Duis lorem lorem, euismod ac metus nec, dapibus rhoncus ex. Nam a feugiat nulla. Aliquam in pellentesque mauris. Ut ut arcu et eros hendrerit pulvinar. Sed iaculis gravida leo, at efficitur massa commodo vel. Vivamus vel lectus tortor. Curabitur a efficitur velit.",
+    "likes": 123,
+    "dislikes": 234
+  },
+  {
+    "_id": 234,
+    "coinId": "monero",
+    "symbol": "https://assets.coingecko.com/coins/images/69/thumb/monero_logo.png?1547033729",
+    "coin": "XMR",
+    "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer id nibh nec sapien lacinia posuere. Praesent a consectetur lectus, eu efficitur justo. Morbi interdum vitae turpis vitae vulputate. Nulla facilisi. Mauris at cursus lectus. Sed eu feugiat sem. Pellentesque ac purus nulla. Phasellus euismod varius neque in finibus. In luctus bibendum suscipit. Sed luctus at purus eget imperdiet. Duis in metus at tortor luctus eleifend.",
+    "likes": 2345,
+    "dislikes": 12
+  },
+  {
+    "_id": 345,
+    "coinId": "ethereum",
+    "symbol": "https://assets.coingecko.com/coins/images/279/thumb/ethereum.png?1595348880",
+    "coin": "ETH",
+    "comment": "Nullam in ligula in orci pharetra dapibus id non massa. Phasellus porttitor nunc vitae lorem luctus, eu efficitur nibh euismod. Praesent ac aliquet odio. Donec egestas lobortis egestas. Mauris sed mi nec metus bibendum fringilla. Nam a dignissim felis. Duis ultrices lectus eu tellus varius, in mattis nisi accumsan. Vestibulum in malesuada dui. Nulla feugiat ultricies tortor a fringilla. Vestibulum eget sollicitudin enim, nec pulvinar dolor. Integer id justo mauris. Phasellus vel hendrerit purus. Aenean egestas placerat nunc, quis posuere tellus sodales nec.",
+    "likes": 93,
+    "dislikes": 1932
+  }
+]

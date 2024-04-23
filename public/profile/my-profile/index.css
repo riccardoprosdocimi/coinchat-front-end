@@ -1,0 +1,61 @@
+body {
+    font-family: "Open Sans", monospace;
+}
+
+.wd-banner-img {
+    height: 300px;
+}
+
+.wd-bg-navbar {
+    background-color: #e9e9e9;
+}
+
+.wd-nav-tab-selected {
+    background-color: #5F00BA;
+    color: white;
+}
+
+a:hover {
+    color: black !important;
+    text-decoration: none;
+    background-color: #9b62f1 !important;
+}
+
+.wd-nav-tabs-font {
+    color: black;
+}
+
+.wd-navbar-profile {
+    width: 60px;
+    height: 60px;
+}
+
+.wd-magnifying-glass {
+    bottom: 11px;
+    left: 15px;
+}
+
+.wd-bg-body {
+    background-color: #f2f2f2;
+}
+
+.wd-bg-watchlist {
+    background-color: #f2f2f2;
+    border-color: #282c34;
+    border-style: solid;
+}
+
+.wd-profile-icon {
+    height: 85%;
+    width: 50%;
+
+}
+
+.wd-profile-icon-position {
+    bottom: 5%;
+    left: 25%;
+}
+
+.wd-bg-profile-bio {
+    background-color: #E0BE36;
+}

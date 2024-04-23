@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <!--    Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link href="content-detail-page.css" rel="stylesheet">
+
+    <!--    Google open source font-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+
+    <!--    fontawesome-->
+    <script src="https://kit.fontawesome.com/d4bf5eb249.js" crossorigin="anonymous"></script>
+
+    <!--    Google chart-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {'packages': ['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Year', 'Price(USD)'],
+                ['2014', 1000],
+                ['2015', 1170],
+                ['2016', 660],
+                ['2017', 1030]
+            ]);
+
+            var options = {
+                title: 'XXX Price Trend',
+                curveType: 'function',
+                legend: {position: 'bottom'}
+            };
+
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+            chart.draw(data, options);
+        }
+    </script>
+
+
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg bg-light border border-top-0">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="../home/index.html">CoinChat</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggler">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarToggler">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="../home/index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../search/search-page.html">Search</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link">Placeholder</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled">Placeholder</a>
+                </li>
+            </ul>
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            </form>
+            <span class="me-1"></span>
+            <div class="d-flex">
+                <button class="btn wd-btn-lowlight" type="button">Log on</button>
+                <span class="me-1"></span>
+                <button class="btn btn-outline-success wd-btn-highlight active" type="button">Sign in</button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+
+<div class="row justify-content-center py-3 px-5 border border-top-0">
+    <div class="col-4">
+        <h3><i class="fa-brands fa-bitcoin pe-1"></i> BitCoin BTC</h3>
+    </div>
+    <div class="col-2">
+        <button type="submit" class="btn wd-btn-highlight active" >Add Watchlist</button>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center">
+    <div id="curve_chart" style="width: 900px; height: 500px"></div>
+</div>
+
+<br>
+<br>
+
+<section id="comments" class="border-top">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-9">
+                <form class="pt-3">
+                    <fieldset>
+                        <legend>Leave a comment</legend>
+                        <div class="row">
+                            <div class="col-sm-3 col-lg-2 ">
+                                <div class="d-flex justify-content-center">
+                                    <img class="rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" height="90px">
+                                </div>
+                                <div class="d-flex justify-content-center mt-3">
+                                    <h6 class="">Coin Dude</h6>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-9 col-lg-10">
+                                <textarea cols="100" rows="3" class="form-control me-2 border" id="message" placeholder="Your Comment" required=""></textarea>
+                                <br>
+                                <div class="row justify-content-end">
+                                    <div class="col-2 d-flex flex-column-reverse">
+                                        <button type="submit" class="btn wd-btn-highlight active" >Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                </form>
+
+                <hr>
+
+                <h3>4 Comments</h3>
+
+                <!-- COMMENT 1 - START -->
+                <div class="row">
+                    <div class="col-2">
+                        <div class="d-flex justify-content-center">
+                            <a href="#"><img class="rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar4.png" alt="" height="90px"></a>
+                        </div>
+                        <div class="d-flex justify-content-center mt-3">
+                            <h6 class="">John Doe</h6>
+                        </div>
+                    </div>
+                    <div class="col-10">
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <ul class="list-unstyled list-inline d-flex justify-content-between">
+                            <li><i class="fa fa-calendar wd-theme-yellow"></i>  27/02/2014</li>
+                            <li><a href="#"><i class="fa fa-thumbs-up wd-theme-yellow"></i></a>  13</li>
+                            <li><a href="#"><i class="fa-solid fa-reply wd-theme-yellow"></i></a>  3</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr>
+                <!-- COMMENT 1 - END -->
+
+                <!-- COMMENT 2 - START -->
+                <div class="row">
+                    <div class="col-2">
+                        <div class="d-flex justify-content-center">
+                            <a href="#"><img class="rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="" height="90px"></a>
+                        </div>
+                        <div class="d-flex justify-content-center mt-3r">
+                            <h6 class="">John Doe</h6>
+                        </div>
+                    </div>
+                    <div class="col-10">
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <ul class="list-unstyled list-inline d-flex justify-content-between">
+                            <li><i class="fa fa-calendar wd-theme-yellow"></i>  27/02/2014</li>
+                            <li><a href="#"><i class="fa fa-thumbs-up wd-theme-yellow"></i></a>  13</li>
+                            <li><a href="#"><i class="fa-solid fa-reply wd-theme-yellow"></i></a>  3</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr>
+                <!-- COMMENT 2 - END -->
+
+                <!-- COMMENT 3 - START -->
+                <div class="row">
+                    <div class="col-2">
+                        <div class="d-flex justify-content-center">
+                            <a href="#"><img class="rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="" height="90px"></a>
+                        </div>
+                        <div class="d-flex justify-content-center mt-3">
+                            <h6 class="">John Doe</h6>
+                        </div>
+                    </div>
+                    <div class="col-10">
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <ul class="list-unstyled list-inline d-flex justify-content-between">
+                            <li><i class="fa fa-calendar wd-theme-yellow"></i>  27/02/2014</li>
+                            <li><a href="#"><i class="fa fa-thumbs-up wd-theme-yellow"></i></a>  13</li>
+                            <li><a href="#"><i class="fa-solid fa-reply wd-theme-yellow"></i></a>  3</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr>
+                <!-- COMMENT 3 - END -->
+
+                <!-- COMMENT 4 - START -->
+                <div class="row">
+                    <div class="col-2">
+                        <div class="d-flex justify-content-center">
+                            <a href="#"><img class="rounded-circle" src="https://bootdey.com/img/Content/avatar/avatar8.png" alt="" height="90px"></a>
+                        </div>
+                        <div class="d-flex justify-content-center mt-3">
+                            <h6 class="">John Doe</h6>
+                        </div>
+                    </div>
+                    <div class="col-10">
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <ul class="list-unstyled list-inline d-flex justify-content-between">
+                            <li><i class="fa fa-calendar wd-theme-yellow"></i>  27/02/2014</li>
+                            <li><a href="#"><i class="fa fa-thumbs-up wd-theme-yellow"></i></a>  13</li>
+                            <li><a href="#"><i class="fa-solid fa-reply wd-theme-yellow"></i></a>  3</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr>
+                <!-- COMMENT 4 - END -->
+
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

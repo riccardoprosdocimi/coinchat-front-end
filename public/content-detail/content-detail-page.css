@@ -1,0 +1,62 @@
+/** Palette
+https://coolors.co/palette/000814-001d3d-003566-ffc300-ffd60a
+*/
+body {
+    font-family: "Open Sans", monospace;
+}
+
+.navbar {
+    font-family: "Audiowide", sans-serif;
+}
+
+.navbar .navbar-brand {
+    color: #ffc300;
+    font-weight: bold;
+}
+
+.wd-app-color-yellow {
+    color: #ffc300;
+}
+
+.navbar .nav-item a:hover {
+    background-color: #ffd60a;
+    color: #000814;
+    border-radius: 0.375rem;
+}
+
+.wd-btn-lowlight {
+    --bs-btn-color: #001d3d;
+    --bs-btn-border-color: #001d3d;
+    --bs-btn-hover-color: #000814;
+    --bs-btn-hover-bg: #ffd60a;
+    --bs-btn-active-border-color: #ffd60a;
+    --bs-btn-active-color: #000814;
+    --bs-btn-active-bg: #ffd60a;
+}
+
+.wd-btn-style {
+    --bs-btn-color: #198754;
+    --bs-btn-border-color: #198754;
+    --bs-btn-hover-color: #000814;
+    --bs-btn-hover-bg: #ffd60a;
+    --bs-btn-hover-border-color: #ffd60a;
+    --bs-btn-focus-shadow-rgb: 25, 135, 84;
+    --bs-btn-active-color: #000814;
+    --bs-btn-active-bg: #ffd60a;
+    --bs-btn-active-border-color: #ffd60a;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #198754;
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: #198754;
+    --bs-gradient: none;
+}
+
+.navbar .nav-link {
+    color: #001d3d;
+}
+
+.navbar .nav-link.disabled {
+    color: var(--bs-nav-link-disabled-color);
+    pointer-events: none;
+    cursor: default;
+}

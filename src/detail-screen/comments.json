@@ -1,0 +1,62 @@
+[
+  {
+    "commentID": 0,
+    "uid": 0,
+    "userName": "John Doe",
+    "userAvatar": "https://bootdey.com/img/Content/avatar/avatar4.png",
+    "commentContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "commentDate": "27/02/2014",
+    "commentThumbUp": 13,
+    "commentReply": 5
+  },
+  {
+    "commentID": 0,
+    "uid": 0,
+    "userName": "John Doe",
+    "userAvatar": "https://bootdey.com/img/Content/avatar/avatar4.png",
+    "commentContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "commentDate": "27/02/2014",
+    "commentThumbUp": 13,
+    "commentReply": 5
+  },
+  {
+    "commentID": 0,
+    "uid": 0,
+    "userName": "John Doe",
+    "userAvatar": "https://bootdey.com/img/Content/avatar/avatar4.png",
+    "commentContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "commentDate": "27/02/2014",
+    "commentThumbUp": 13,
+    "commentReply": 5
+  },
+  {
+    "commentID": 0,
+    "uid": 0,
+    "userName": "John Doe",
+    "userAvatar": "https://bootdey.com/img/Content/avatar/avatar4.png",
+    "commentContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "commentDate": "27/02/2014",
+    "commentThumbUp": 13,
+    "commentReply": 5
+  },
+  {
+    "commentID": 0,
+    "uid": 0,
+    "userName": "John Doe",
+    "userAvatar": "https://bootdey.com/img/Content/avatar/avatar4.png",
+    "commentContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "commentDate": "27/02/2014",
+    "commentThumbUp": 13,
+    "commentReply": 5
+  },
+  {
+    "commentID": 0,
+    "uid": 0,
+    "userName": "John Doe",
+    "userAvatar": "https://bootdey.com/img/Content/avatar/avatar4.png",
+    "commentContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "commentDate": "27/02/2014",
+    "commentThumbUp": 13,
+    "commentReply": 5
+  }
+]
