@@ -35,8 +35,8 @@ const LineChartArea = () => {
     });
     let [coinPrice, setCoinPrice] = useState(null)
     let [coinGradient, setCoinGradient] = useState(null)
-
     const dispatch = useDispatch();
+
     useEffect(
         () => {
             dispatch(CoinMCThunk({coinID: searchParams.get("coinID"), days: searchParams.get("days")}));
@@ -97,7 +97,7 @@ const LineChartArea = () => {
         (price) => {
             const unixTimestamp = price[0];
             let t = new Date(unixTimestamp);
-            return moment(t).format("dd hh:MM");
+            return moment(t).format("YYYY-MM-DD HH:mm");
         }
     );
     const data = {
