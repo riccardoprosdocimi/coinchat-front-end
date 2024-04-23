@@ -27,7 +27,7 @@ function Home() {
                 }
 
                 <div className={"row pt-3"}>
-                    <div className={"col-3"}> <h3> Trending Now! </h3></div>
+                    <div className={"col-3"}> <h3>Trending Now:</h3></div>
                 </div>
                 <div className="row">
                     <MainComponent/>
