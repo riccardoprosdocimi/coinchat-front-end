@@ -110,7 +110,7 @@ module.exports = {
   ownTypeDeclarations: resolveOwn('lib/react-app.d.ts'),
 };
 
-const ownPackageJson = require('package.json');
+const ownPackageJson = require('./package.json');
 const reactScriptsPath = resolveApp(`node_modules/${ownPackageJson.name}`);
 const reactScriptsLinked =
   fs.existsSync(reactScriptsPath) &&
