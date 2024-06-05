@@ -1,5 +1,5 @@
 const coinData = {
-    placeholder: "something"
+    placeholder: 'Search for a coin...',
 }
 
 export default coinData;

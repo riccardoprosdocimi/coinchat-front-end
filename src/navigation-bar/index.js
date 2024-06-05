@@ -7,6 +7,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import {Dropdown, DropdownButton} from "react-bootstrap";
 import {logoutThunk} from "../services/users-thunks";
 import {LinkContainer} from "react-router-bootstrap";
+import {useState} from "react";
 
 function NavigationBar() {
     const {currentUser} = useSelector(state => state.users);
@@ -15,9 +16,16 @@ function NavigationBar() {
     const active = paths[1];
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [show, setShow] = useState(false);
+    const handleMenuShow = () => {
+        if (window.innerWidth < 768) {
+            setShow(!show);
+        }
+    };
     const handleLogout = () => {
         dispatch(logoutThunk());
         navigate('/')
+        handleMenuShow()
     };
 
     if (active === 'login') {
@@ -34,14 +42,17 @@ function NavigationBar() {
                                           style={{"color" : "#ffc300"}}>
                                 CoinChat
                             </Navbar.Brand>
-                            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`}/>
+                            <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`}
+                                onClick={() => handleMenuShow()}/>
                             <Navbar.Offcanvas
+                                show={show}
+                                onHide={() => handleMenuShow()}
                                 id={`offcanvasNavbar-expand-${expand}`}
                                 aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
                                 placement="end">
                                 <Offcanvas.Header closeButton
                                                   className="wd-nav-bar-bg-font"
-                                                  style={{"color" : "#ffc300"}}>
+                                                  style={{"color": "#ffc300"}}>
                                     <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
                                         CoinChat
                                     </Offcanvas.Title>
@@ -51,21 +62,21 @@ function NavigationBar() {
                                         <LinkContainer to="/">
                                             <Nav.Link className={`wd-nav-bar`} active={
                                                 active === 'home'
-                                            }>
+                                            } onClick={() => handleMenuShow()}>
                                                 Home
                                             </Nav.Link>
                                         </LinkContainer>
                                         <LinkContainer to="profile">
                                             <Nav.Link className={`wd-nav-bar`} active={
                                                 active === 'profile'
-                                            }>
+                                            } onClick={() => handleMenuShow()}>
                                                 Profile
                                             </Nav.Link>
                                         </LinkContainer>
                                         <LinkContainer to="search">
                                             <Nav.Link className={`wd-nav-bar`} active={
                                                 active === 'search'
-                                            }>
+                                            } onClick={() => handleMenuShow()}>
                                                 Search
                                             </Nav.Link>
                                         </LinkContainer>
@@ -88,12 +99,13 @@ function NavigationBar() {
                                             <LinkContainer to="register">
                                                 <Nav.Link className="wd-nav-bar" active={
                                                     active === 'register'
-                                                }>
+                                                } onClick={() => handleMenuShow()}>
                                                     Register
                                                 </Nav.Link>
                                             </LinkContainer>
                                             <LinkContainer to="login">
-                                                <Nav.Link className="wd-nav-bar">
+                                                <Nav.Link className="wd-nav-bar"
+                                                          onClick={() => handleMenuShow()}>
                                                     Login
                                                 </Nav.Link>
                                             </LinkContainer>
@@ -116,7 +128,7 @@ function NavigationBar() {
                                                 <LinkContainer to="edit-users" >
                                                     <Dropdown.Item eventKey="1" active={
                                                         active === 'edit-users'
-                                                    }>
+                                                    } onClick={() => handleMenuShow()}>
                                                         Edit Users
                                                     </Dropdown.Item>
                                                 </LinkContainer>
@@ -124,7 +136,7 @@ function NavigationBar() {
                                             <LinkContainer to="bloglist">
                                                 <Dropdown.Item eventKey="2" active={
                                                     active === 'bloglist'
-                                                }>
+                                                } onClick={() => handleMenuShow()}>
                                                     Blog
                                                 </Dropdown.Item>
                                             </LinkContainer>

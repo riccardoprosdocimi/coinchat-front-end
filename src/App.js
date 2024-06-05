@@ -28,6 +28,7 @@ import EditUsers from "./users/edit-users";
 import BlogScreen from "./blog-detail-screen";
 import BlogPostEditScreen from "./blog-post-edit-screen";
 import CreateUser from "./users/create-user";
+import Layout from "./layout/layout";
 
 const store = configureStore({
                                  reducer: {
@@ -49,55 +50,57 @@ function App() {
         <Provider store={store}>
             <CurrentUser>
                 <BrowserRouter>
-                    <NavigationBar/>
-                    <div className={'container-fluid'}>
-                        <Routes>
-                            <Route index
-                                   element={<Home/>}/>
-                            <Route path={'/home'}
-                                   element={<Home/>}/>
-                            <Route path={'/profile'}
-                                   element={
-                                       <ProtectedRoute>
-                                           <Profile/>
-                                       </ProtectedRoute>
-                                   }/>
-                            <Route path={'/profile/:uid'}
-                                   element={<PublicProfile/>}/>
-                            <Route path={'/profile/edit-profile'}
-                                   element={
-                                <ProtectedRoute>
-                                    <EditProfile/>
-                                </ProtectedRoute>
-                            }/>
-                            <Route path={'/edit-users'}
-                                   element={
-                                <ProtectedRoute>
-                                    <EditUsers/>
-                                </ProtectedRoute>
-                            }/>
-                            <Route path={'/edit-users/create-user'}
-                                   element={
-                                       <ProtectedRoute>
-                                           <CreateUser/>
-                                       </ProtectedRoute>
-                                   }/>
-                            <Route path={"/search"}
-                                   element={<Search/>}/>
-                            <Route path={"/detail/*"}
-                                   element={<Detail/>}/>
-                            <Route path={"/login"}
-                                   element={<Login/>}/>
-                            <Route path={"/register"}
-                                   element={<Register/>}/>
-                            <Route path={"/bloglist"}
-                                   element={<BlogListScreen/>}/>
-                            <Route path={"/blog/*"}
-                                   element={<BlogScreen/>}/>
-                            <Route path={"/blog-edit/:type"}
-                                   element={<BlogPostEditScreen/>}/>
-                        </Routes>
-                    </div>
+                    <Layout>
+                        <NavigationBar/>
+                        <div className={'container-fluid'}>
+                            <Routes>
+                                <Route index
+                                       element={<Home/>}/>
+                                <Route path={'/home'}
+                                       element={<Home/>}/>
+                                <Route path={'/profile'}
+                                       element={
+                                           <ProtectedRoute>
+                                               <Profile/>
+                                           </ProtectedRoute>
+                                       }/>
+                                <Route path={'/profile/:uid'}
+                                       element={<PublicProfile/>}/>
+                                <Route path={'/profile/edit-profile'}
+                                       element={
+                                    <ProtectedRoute>
+                                        <EditProfile/>
+                                    </ProtectedRoute>
+                                }/>
+                                <Route path={'/edit-users'}
+                                       element={
+                                    <ProtectedRoute>
+                                        <EditUsers/>
+                                    </ProtectedRoute>
+                                }/>
+                                <Route path={'/edit-users/create-user'}
+                                       element={
+                                           <ProtectedRoute>
+                                               <CreateUser/>
+                                           </ProtectedRoute>
+                                       }/>
+                                <Route path={"/search"}
+                                       element={<Search/>}/>
+                                <Route path={"/detail/*"}
+                                       element={<Detail/>}/>
+                                <Route path={"/login"}
+                                       element={<Login/>}/>
+                                <Route path={"/register"}
+                                       element={<Register/>}/>
+                                <Route path={"/bloglist"}
+                                       element={<BlogListScreen/>}/>
+                                <Route path={"/blog/*"}
+                                       element={<BlogScreen/>}/>
+                                <Route path={"/blog-edit/:type"}
+                                       element={<BlogPostEditScreen/>}/>
+                            </Routes>
+                        </div>
+                    </Layout>
                 </BrowserRouter>
             </CurrentUser>
         </Provider>

@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {registerThunk} from "../services/users-thunks";
 import {Navigate, useNavigate} from "react-router-dom";
+import bcrypt from 'bcryptjs';
 
 const randomizeBanner = () => Math.floor(Math.random() * 4) + 1;
 const randomizeAvatar = () => Math.floor(Math.random() * 7) + 1;
@@ -104,6 +105,8 @@ const Register = () => {
             setErrorMessage('Please select the type of account you want to create');
         } else {
             setErrorMessage(null);
+            // Hash the password before storing it
+            const hashedPassword = bcrypt.hashSync(password, 10);
             const newUser = {
                 banner,
                 avatar,
@@ -118,7 +121,7 @@ const Register = () => {
                 "handle": username,
                 countryCode,
                 number,
-                password,
+                "password": hashedPassword,
                 "role": accountType
             };
             dispatch(registerThunk(newUser));

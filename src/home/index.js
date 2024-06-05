@@ -11,7 +11,7 @@ function Home() {
     return (
             <div className="container">
                 <div className={"row pt-3"}> <h2 className={"text-center"}>Welcome to CoinChat</h2></div>
-                <div className={"row pt-3"}> <h2 className={"text-center "}>Explore the Cryptoeconomy</h2></div>
+                <div className={"row pt-3"}> <h2 className={"text-center "}>Explore the Crypto-economy</h2></div>
                 {
                     currentUser &&
                     <h3>Hi {currentUser.firstName}!
@@ -19,7 +19,7 @@ function Home() {
                 }
                 {
                     currentUser &&
-                    <h5>You have been watching the following coins:</h5>
+                    <h5>You're watching the following coins:</h5>
                 }
                 {
                     currentUser &&
@@ -27,7 +27,7 @@ function Home() {
                 }
 
                 <div className={"row pt-3"}>
-                    <div className={"col-3"}> <h3>Trending Now:</h3></div>
+                    <h3>Trending Now:</h3>
                 </div>
                 <div className="row">
                     <MainComponent/>
