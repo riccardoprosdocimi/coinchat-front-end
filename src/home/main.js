@@ -25,40 +25,40 @@ const MainComponent = () => {
         });
     }, [dispatch]);
 
-    if (loading) {
-        return <div>Loading coins...</div>
-    }
-
-    return (
-        <ul className="list-group pt-4">
-            {coins && coins.length > 0 ? (
-                coins.map(coin => (
-                    <li key={coin.item.coin_id} className={"list-group-item"}>
-                        <div className="row">
-                            <div className="col-xxl-2 col-xl-3 col-lg-3">
-                                <img src={coin.item.large} className="rounded" width="100px" height="100px" alt={"Coin large thumbnail"} />
-                            </div>
-                            <div className="col-xxl-7 col-xl-5 col-lg-5">
-                                <div className="fw-bolder pe-2">{coin.item.name} -- {coin.item.symbol}</div>
-                                <div className="text-secondary">
-                                    <span>{moneyFormat.format(coin.item.price_btc * 17388.40)}</span>
+    if (loading && coins.length === 0) {
+        return <h4>Loading coins...</h4>
+    } else if (!loading && coins.length === 0) {
+        return <h4>An error occurred while loading the coins</h4>
+    } else {
+        return (
+            <ul className="list-group pt-4">
+                {
+                    coins.map(coin => (
+                        <li key={coin.item.coin_id} className={"list-group-item"}>
+                            <div className="row">
+                                <div className="col-xxl-2 col-xl-3 col-lg-3">
+                                    <img src={coin.item.large} className="rounded" width="100px" height="100px" alt={"Coin large thumbnail"} />
+                                </div>
+                                <div className="col-xxl-7 col-xl-5 col-lg-5">
+                                    <div className="fw-bolder pe-2">{coin.item.name} -- {coin.item.symbol}</div>
+                                    <div className="text-secondary">
+                                        <span>{moneyFormat.format(coin.item.price_btc * 17388.40)}</span>
+                                    </div>
+                                </div>
+                                <div className="col-xxl-3 col-xl-4 col-lg-4">
+                                    <Link to={`/detail?coinID=${coin.item.id}`}>
+                                        <button className="wd-btn-style btn wd-navbar-text float-end d-flex align-items-center">
+                                            View
+                                        </button>
+                                    </Link>
                                 </div>
                             </div>
-                            <div className="col-xxl-3 col-xl-4 col-lg-4">
-                                <Link to={`/detail?coinID=${coin.item.id}`}>
-                                    <button className="wd-btn-style btn wd-navbar-text float-end d-flex align-items-center">
-                                        View
-                                    </button>
-                                </Link>
-                            </div>
-                        </div>
-                    </li>
-                ))
-            ) : (
-                 <div>No coins available.</div>
-             )}
-        </ul>
-    );
+                        </li>
+                    ))
+                }
+            </ul>
+        );
+    }
 };
 
 export default MainComponent
