@@ -65,11 +65,11 @@ const SearchResultItem = ({result}) => {
 
                         <button onClick={(e) => addWatchlistItem(e)}
                                 className="btn btn-sm ms-auto wd-btn-style">
-                            Add Watchlist
+                            Add to Watchlist
                         </button>
                         : <button onClick={(e) => removeWatchlistItem(e)}
                                   className="btn btn-sm ms-auto wd-btn-style-negative">
-                            Remove Watchlist
+                            Remove from Watchlist
                         </button>
                 }
             </div>

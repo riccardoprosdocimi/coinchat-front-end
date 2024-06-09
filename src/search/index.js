@@ -8,10 +8,8 @@ const Search = () => {
             <div className="container col-xxl-6 col-xl-7 col-lg-8 col-md-10 col-sm-11 col-12 mt-5">
                 <SearchBar />
                 <SearchResultPagination itemsPerPage={5}/>
-
             </div>
     );
-
 }
 
 export default Search;

@@ -2,13 +2,11 @@ import {createSlice} from "@reduxjs/toolkit";
 import resList from "../data/search/search-result";
 import {SearchCoinThunk} from "../services/search-thunk";
 
-// ready for interaction with database
-
 const initialState = {
     resList,
-    Searching: false
-}
-
+    loading: false,
+    error: null
+};
 
 const SearchReducer = createSlice({
       name: 'SearchReducer',
@@ -16,10 +14,21 @@ const SearchReducer = createSlice({
       reducers: {},
       extraReducers(builder) {
           builder
+              .addCase(SearchCoinThunk.pending, (state) => {
+                  state.loading = true;
+                  state.error = null;
+              })
               .addCase(SearchCoinThunk.fulfilled, (state, action) => {
+                  state.loading = false;
                   state.resList = action.payload;
+                  state.error = null;
+              })
+              .addCase(SearchCoinThunk.rejected, (state, action) => {
+                  state.loading = false;
+                  state.resList = [];
+                  state.error = action.error.message;
               });
       }
-});
+  });
 
-export default SearchReducer.reducer
+export default SearchReducer.reducer;

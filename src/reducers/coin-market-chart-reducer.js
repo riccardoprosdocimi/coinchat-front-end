@@ -4,7 +4,8 @@ import {CoinMCThunk} from "../services/detail-thunks";
 
 const initialState = {
     marketData,
-    fetching: true
+    fetching: true,
+    error: null
 }
 
 const CoinMarketChartReducer = createSlice({
@@ -15,14 +16,16 @@ const CoinMarketChartReducer = createSlice({
        builder
            .addCase(CoinMCThunk.pending, (state) => {
                state.fetching = true;
+               state.error = null;
            })
-           .addCase(CoinMCThunk.rejected, (state) => {
+           .addCase(CoinMCThunk.rejected, (state, action) => {
                state.fetching = false;
-               console.log("CoinMCThunk Rejected");
+               state.error = action.error.message;
            })
            .addCase(CoinMCThunk.fulfilled, (state, action) => {
                state.marketData = action.payload;
                state.fetching = false;
+               state.error = null;
            });
    }
 });

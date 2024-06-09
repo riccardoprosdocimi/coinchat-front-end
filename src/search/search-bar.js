@@ -13,30 +13,29 @@ const SearchBar = () => {
         setSearchTerm(searchParams.get("query"));
     }, [searchParams, dispatch])
 
-    return(
+    return (
         <div id="main-search-bar" className="mb-5">
             <div className="container text-center">
-                <h2>Explore the cryptoeconomy</h2>
+                <h2>Explore the crypto-economy</h2>
             </div>
             <div className="container pt-3 col-8">
                 <div className="input-group">
                     <input
                         onKeyDown={(e) => {
                             if (e.key === 'Enter') {
-                                setSearchParams({ 'query': searchTerm })
+                                setSearchParams({'query': searchTerm})
                             }
                         }}
-                        type="search" className="form-control rounded" placeholder={"Search"}
-                           value={searchTerm} onChange={(e) => {
-                                setSearchTerm(e.target.value)
-                           }}/>
+                        type="search" className="form-control rounded" placeholder={"Enter Coin"}
+                        value={searchTerm} onChange={(e) => {
+                        setSearchTerm(e.target.value)
+                    }}/>
                     <button
-
                         onClick={() => {
-                            setSearchParams({ 'query': searchTerm })
-                            // dispatch(SearchCoinThunk(searchTerm))
-                        }} type="button" className="btn wd-btn-lowlight ms-1 rounded"
-                    >Search</button>
+                            setSearchParams({'query': searchTerm})
+                        }} type="button" className="btn wd-btn-style ms-1 rounded" id="searchButton"
+                    >Search
+                    </button>
                 </div>
             </div>
         </div>

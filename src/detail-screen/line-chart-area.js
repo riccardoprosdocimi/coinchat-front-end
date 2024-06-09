@@ -30,7 +30,7 @@ ChartJS.register(
 
 const LineChartArea = () => {
     let [searchParams] = useSearchParams();
-    const {marketData, fetching} = useSelector((state) => {
+    const {marketData, fetching, error} = useSelector((state) => {
         return state.coinMarketChart;
     });
     let [coinPrice, setCoinPrice] = useState(null)
@@ -64,7 +64,7 @@ const LineChartArea = () => {
             title: {
                 display: false
             },
-            tooltip: {}
+            tooltip: {},
         },
         interaction: {
             mode: 'index',
@@ -82,12 +82,6 @@ const LineChartArea = () => {
                     maxRotation: 0,
                     maxTicksLimit: 7
                 }
-            }
-        },
-        onHover: function(evt, item) {
-            if (item.length) {
-                setCoinPrice(item[0].element.$context.raw)
-                setCoinGradient(item[0].element.$context.raw/marketData.prices[0][1] - 1)
             }
         }
     };
@@ -108,8 +102,8 @@ const LineChartArea = () => {
                 data: marketData.prices.map((price) => {
                     return price[1]
                 }),
-                borderColor: 'rgb(255, 99, 132)',
-                backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                borderColor: 'rgb(255, 214, 10)',
+                backgroundColor: 'rgb(3, 49, 83)',
                 fill: true
 
             }
@@ -137,10 +131,16 @@ const LineChartArea = () => {
     const roundDigit1 = getRoundDigit(coinGradient);
     const displayedCoinGradient = Math.round((coinGradient + Number.EPSILON) * roundDigit1) / roundDigit1
 
+    if (error) {
+        return <h4>
+            {error}<br/>
+            Probable cause: Maximum API calls reached, please wait a minute
+        </h4>;
+    }
+
     return (
-        fetching
-            ?<h4>Loading...</h4>
-            :
+        !error && fetching?
+            <h4>Loading...</h4>:
         <div className="d-flex flex-column mt-2">
             <div id={"timeRangeNavigation"} className={"d-flex mt-2"}>
                     <h3 className={"fw-bold ms-5 d-none d-sm-block"}><i className="fa-solid fa-dollar-sign"></i>{Math.round((coinPrice + Number.EPSILON) * roundDigit) / roundDigit}</h3>

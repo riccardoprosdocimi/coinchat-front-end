@@ -6,7 +6,7 @@ import {addWatchlistThunk, findWatchlistThunk, removeWatchlistThunk,} from "../s
 const HeadArea = () => {
 
     const {currentUser} = useSelector(state => state.users);
-    const {coinData, fetching} = useSelector((state) => {
+    const {coinData, fetching, error} = useSelector((state) => {
         return state.coinData;
     });
     const {watchlist} = useSelector(state => state.watchlist);
@@ -54,13 +54,16 @@ const HeadArea = () => {
         setWatchStateFlag(false);
     }
 
-
-
+    if (error) {
+        return <h4>
+            {error}<br/>
+            Probable cause: Maximum API calls reached, please wait a minute
+        </h4>;
+    }
 
     return(
-        fetching?
-            <h4>Loading...</h4>
-            :
+        !error && fetching?
+            <h4>Loading...</h4>:
         <div className="pt-4 ">
             <div className="d-flex col-12">
                 <h3 className={""}><img src={coinData.image.large} width={"36px"} alt={"The icon of this coin"}/> {coinData.name}  {coinData.symbol}</h3>
