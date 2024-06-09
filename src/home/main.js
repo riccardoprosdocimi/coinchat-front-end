@@ -16,7 +16,7 @@ const MainComponent = () => {
     useEffect(() => {
         const fetchCoins = async () => {
             setLoading(true);
-            dispatch(getTrendingCoinsThunk());
+            await dispatch(getTrendingCoinsThunk());
             setLoading(false);
         };
         fetchCoins().catch(error => {
