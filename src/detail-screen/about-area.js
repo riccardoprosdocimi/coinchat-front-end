@@ -11,7 +11,7 @@ const AboutArea = () => {
 
     return(
         fetching?
-            <h4>Loading</h4>:
+            <h4>Loading...</h4>:
         <div className="mt-3 pb-3">
             <div id="about info" className={""}>
                 <h3>About</h3>

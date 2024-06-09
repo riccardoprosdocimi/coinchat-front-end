@@ -20,7 +20,7 @@ const BlogListScreen = () => {
         e.preventDefault();
 
         if (!currentUser) {
-            alert('Please login before write a blog.')
+            alert('Please log in to write a blog')
 
         } else if (currentUser.role === "PERSONAL") {
             alert("Only Pro user could create a new blog.")

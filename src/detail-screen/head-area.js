@@ -34,7 +34,7 @@ const HeadArea = () => {
 
     const addWatchlistItem = () => {
         if (!currentUser) {
-            alert("Please login before add to watchlist")
+            alert("Please log in to add coins to your watchlist")
             return
         }
         const watchlistItem = {
@@ -47,7 +47,7 @@ const HeadArea = () => {
 
     function removeWatchlistItem() {
         if (!currentUser) {
-            alert("Please login before add to watchlist")
+            alert("Please log in to add coins to your watchlist")
             return
         }
         dispatch(removeWatchlistThunk(watchlistID))
@@ -59,7 +59,7 @@ const HeadArea = () => {
 
     return(
         fetching?
-            <h4>Loading</h4>
+            <h4>Loading...</h4>
             :
         <div className="pt-4 ">
             <div className="d-flex col-12">

@@ -59,10 +59,10 @@ const BlogScreen = () => {
         e.preventDefault();
 
         if (!currentUser) {
-            alert('Please login before edit a blog.')
+            alert('Please log in to edit a blog')
 
         } else if (currentUser._id !== curBlog.authorID._id) {
-            alert("Only writer could edit the blog.")
+            alert("Only the blog author can edit the blog")
 
         } else (
             navigate('/blog-edit/Edit')

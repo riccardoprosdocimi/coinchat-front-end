@@ -32,7 +32,7 @@ const SearchResultItem = ({result}) => {
     const addWatchlistItem = (e) => {
         e.preventDefault();
         if (!currentUser) {
-            alert("Please login before add to watchlist")
+            alert("Please log in to add coins to your watchlist")
             return
         }
         const watchlistItem = {
@@ -46,7 +46,7 @@ const SearchResultItem = ({result}) => {
     function removeWatchlistItem(e) {
         e.preventDefault();
         if (!currentUser) {
-            alert("Please login before add to watchlist")
+            alert("Please log in to add coins to your watchlist")
             return
         }
         dispatch(removeWatchlistThunk(watchlistID))

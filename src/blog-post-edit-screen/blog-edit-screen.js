@@ -33,13 +33,13 @@ const BlogEditScreen = () => {
 
     function handleSubmit() {
         if (!currentUser) {
-            alert("Please login before publish a new blog")
+            alert("Please log in to publish a new blog")
         }else if (!curBlog || curBlog.authorID._id !== currentUser._id) {
-            alert("The author ID is not match to user ID")
+            alert("The author ID does not match the user ID")
         }else if (title.length === 0) {
-            alert("Title of blog cannot be empty")
+            alert("Blog title cannot be empty")
         } else if (content.length === 0) {
-            alert("Content of blog cannot be empty")
+            alert("Blog content cannot be empty")
         } else {
             const blogData = {
                 title,

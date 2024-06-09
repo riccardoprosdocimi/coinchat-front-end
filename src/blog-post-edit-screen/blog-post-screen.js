@@ -37,7 +37,7 @@ function BlogPostScreen() {
     const navigate = useNavigate();
     function handleSubmit() {
         if (!currentUser) {
-            alert("Please login before publish a new blog")
+            alert("Please log in to publish a new blog")
         }else if (title.length === 0) {
             alert("Title of blog cannot be empty")
         } else if (content.length === 0) {

@@ -139,7 +139,7 @@ const LineChartArea = () => {
 
     return (
         fetching
-            ?<h4>Loading</h4>
+            ?<h4>Loading...</h4>
             :
         <div className="d-flex flex-column mt-2">
             <div id={"timeRangeNavigation"} className={"d-flex mt-2"}>
