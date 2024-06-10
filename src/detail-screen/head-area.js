@@ -79,10 +79,8 @@ const HeadArea = () => {
                         Remove from Watchlist
                         </button>
                 }
-
             </div>
         </div>
-
     );
 }
 

@@ -20,15 +20,26 @@ const BlogArea = () => {
     const reverseBlogList = [...blogList];
     reverseBlogList.toReversed().slice(0, 3);
 
+    const renderContent = () => {
+        if (fetching) {
+            return "Loading...";
+        } else if (!blogList || blogList.length === 0) {
+            return "No blogs yet";
+        } else {
+            return null
+        }
+    };
 
-    if (!blogList || fetching) {
-        return
-    }
     return (
         <div id={"relate-blogs"} className={"d-none d-lg-block"}>
             <h3>Related Blogs</h3>
-            <div className="list-group">
+            <h4>
                 {
+                    renderContent()
+                }
+            </h4>
+            <div className="list-group">
+                {!fetching && blogList && blogList.length > 0 &&
                     reverseBlogList.map(
                         blog => <BlogListItem key={blog._id} blog={blog} />
                     )

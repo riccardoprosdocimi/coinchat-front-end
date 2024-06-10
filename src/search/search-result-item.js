@@ -59,18 +59,19 @@ const SearchResultItem = ({result}) => {
               className="list-group-item list-group-item-action card mb-2">
             <h5 className="card-header"><img src={result.large} width={"24px"} alt={"The icon of this coin"}/> {result.name}</h5>
             <div className="card-body d-flex">
-                <h5 className="card-title">M.Cap Rank: {result.market_cap_rank}</h5>
+                <h5 className="card-title">M.Cap Rank: {result.market_cap_rank
+                                                        ? result.market_cap_rank : 'N/A'}</h5>
                 {
                     !watchState || !currentUser ?
 
-                        <button onClick={(e) => addWatchlistItem(e)}
-                                className="btn btn-sm ms-auto wd-btn-style">
-                            Add to Watchlist
-                        </button>
-                        : <button onClick={(e) => removeWatchlistItem(e)}
-                                  className="btn btn-sm ms-auto wd-btn-style-negative">
-                            Remove from Watchlist
-                        </button>
+                    <button onClick={(e) => addWatchlistItem(e)}
+                            className="btn btn-sm ms-auto wd-btn-style">
+                        Add to Watchlist
+                    </button>
+                                                : <button onClick={(e) => removeWatchlistItem(e)}
+                                                          className="btn btn-sm ms-auto wd-btn-style-negative">
+                        Remove from Watchlist
+                    </button>
                 }
             </div>
         </Link>

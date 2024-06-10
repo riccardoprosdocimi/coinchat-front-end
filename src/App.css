@@ -253,7 +253,6 @@ h4, h5, h6, p {
   height: 15vw;
   object-fit: cover;
 }
-
 /*----------------------------------------Comment Area----------------------------------------*/
 .wd-rounded-image {
   object-fit: cover;
@@ -264,21 +263,29 @@ h4, h5, h6, p {
 .wd-textarea-resize-none {
   resize: none;
 }
-
 /*---------------------------------------Blog List--------------------------------------------------*/
 .card-footer {
   background-color: #fdfdfe;
 }
-
 /*---------------------------------------Detail Page---------------------------------------------------*/
-
 .wd-paragraph-fine-wrapped {
   white-space: pre-line;
 }
 
-.nav-pills .nav-link.active {
-  color: #212529;
+.nav-pills .nav-link {
   background-color: #ffd60a;
+  color: #000814;
+  margin: 0.1em;
+}
+
+.nav-pills .nav-link.active {
+  color: #000814;
+  background-color: #ffb224;
+}
+
+.nav-pills .nav-link:hover {
+  background-color: #ffc300;
+  color: #000814;
 }
 
 .nav {
