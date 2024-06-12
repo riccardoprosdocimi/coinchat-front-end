@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import AsyncSelect from 'react-select/async';
 import {useDispatch, useSelector} from "react-redux";
 import {createNewBlogThunk} from "../services/blog-thunk";
 import {useNavigate} from "react-router-dom";
-import {coinGeckoSearch_API} from "../util/global-variables";
+import {COINGECKO_SEARCH_API, COINGECKO_TRENDING_API} from "../util/global-variables";
 
 function BlogPostScreen() {
     const {currentUser} = useSelector(state => state.users);
@@ -11,6 +11,7 @@ function BlogPostScreen() {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("")
     const [selectedValue, setSelectedValue] = useState(null);
+    const [defaultOptions, setDefaultOptions] = useState([]);
 
     // handle selection
     const handleChange = value => {
@@ -19,15 +20,41 @@ function BlogPostScreen() {
 
     // load options using API call
     const loadOptions = async (inputValue) => {
-        const res = await fetch(`${coinGeckoSearch_API}${inputValue}`)
-        const data = await res.json()
-        return data["coins"].slice(0, 5)
+        try {
+            const response = await fetch(`${COINGECKO_SEARCH_API}${inputValue}`);
+            const data = await response.json();
+            return data['coins'].slice(0, 5);
+        } catch (error) {
+            alert("Maximum API calls reached. Please wait a minute and try searching again.")
+            console.error('Error fetching blog options:', error);
+            return [];
+        }
     };
+
+    // load default options (trending coins) using API call
+    const loadDefaultOptions = async () => {
+        try {
+            const response = await fetch(`${COINGECKO_TRENDING_API}`);
+            const data = await response.json();
+            const options = data.coins.map(coin => ({
+                name: coin.item.name,
+                id: coin.item.id,
+                thumb: coin.item.thumb,
+                image: coin.item.large,
+                symbol: coin.item.symbol
+            }));
+            setDefaultOptions(options);
+        } catch (error) {
+            console.error('Error fetching blog default options:', error);
+        }
+    }
+    useEffect(() => {
+        loadDefaultOptions();
+    }, []);
 
     function handleTitleChange(event) {
         setTitle(event.target.value)
     }
-
 
     function handleContentChange(event) {
         setContent(event.target.value)
@@ -38,68 +65,66 @@ function BlogPostScreen() {
     function handleSubmit() {
         if (!currentUser) {
             alert("Please log in to publish a new blog")
-        }else if (title.length === 0) {
-            alert("Title of blog cannot be empty")
+        } else if (title.length === 0) {
+            alert("Blog title cannot be empty")
         } else if (content.length === 0) {
-            alert("Content of blog cannot be empty")
+            alert("Blog content cannot be empty")
         } else if (selectedValue === null) {
-            alert("Please select a coin pertaining to the blog")
+            alert("Please select the coin you want to blog about")
         } else {
             const newBlog = {
                 authorID: currentUser._id,
                 coinID: selectedValue.id,
+                coinImage: selectedValue.image,
+                coinSymbol: selectedValue.symbol,
                 title,
                 content
             }
             dispatch(createNewBlogThunk(newBlog));
             navigate('/bloglist');
         }
-
     }
 
-    const defaultOpt = [
-        { name: 'Please input the keyword of Crypto', id: 'Bitcoin' },
-    ];
+    const formatOptionLabel = ({ name, thumb }) => (
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+            {thumb && <img src={thumb}
+                           alt="Coin Thumbnail"
+                           style={{ marginRight: 5, width: 20, height: 20 }} />}
+            <span>{name}</span>
+        </div>
+    );
 
     return (
-
-        <form className={"container col-xxl-6 col-xl-7 col-lg-8 col-md-9 col-sm-12 col-12"}
-              onSubmit={handleSubmit}>
-            <label>
-                <div className={"form-group"}>
-                    Choose the coin
-                    <AsyncSelect
-                        className={"form-control"}
-                        cacheOptions
-                        defaultOptions={defaultOpt}
-                        placeholder={"Search coin here"}
-                        value={selectedValue}
-                        getOptionLabel={e => e.name}
-                        getOptionValue={e => e.id}
-                        loadOptions={loadOptions}
-                        onChange={handleChange}
-                    />
+        <form className={"container pt-sm-1 pt-md-2 pt-lg-3 pt-xl-4 pt-xxl-5"}>
+            <div className="row justify-content-center">
+                <div className="col-12 col-md-9 col-lg-8 col-xl-7 col-xxl-6">
+                    <div className={"form-group"}>
+                        Coin
+                        <AsyncSelect
+                            className={"form-control"}
+                            cacheOptions={true}
+                            defaultOptions={defaultOptions}
+                            placeholder={"Search coin here"}
+                            value={selectedValue}
+                            getOptionLabel={formatOptionLabel}
+                            getOptionValue={e => e.id}
+                            loadOptions={loadOptions}
+                            onChange={handleChange}
+                        />
+                    </div>
+                    <div className={"form-group"}>
+                        <label htmlFor={"title"}>Title:</label>
+                        <input id={"title"} className={"form-control"} type="text" value={title} onChange={handleTitleChange} />
+                    </div>
+                    <div className={"form-group"}>
+                        <label htmlFor={"content"}>Content:</label>
+                        <textarea id={"content"} rows="15" className={"form-control wd-textarea-resize-none"} value={content} onChange={handleContentChange} />
+                    </div>
+                    <button type="submit" className="btn wd-btn-style w-100 mt-2" onClick={handleSubmit}>Publish</button>
                 </div>
-                <div className={"form-group"}>
-                    <label htmlFor={"title"}>
-                        Title:
-                    </label>
-                    <input id={"title"} className={"form-control"} type="text" value={title} onChange={handleTitleChange} />
-                </div>
-                <div className={"form-group"}>
-                    <label htmlFor={"content"}>
-                        Content:
-                    </label>
-                    <textarea id={"content"} rows="15" className={"form-control wd-textarea-resize-none"} value={content} onChange={handleContentChange} />
-                </div>
-                <button type="submit"
-                        className="btn wd-btn-style w-100 mt-2" >
-                    Publish
-                </button>
-            </label>
+            </div>
         </form>
     );
 }
-
 
 export default BlogPostScreen;

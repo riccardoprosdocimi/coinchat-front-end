@@ -31,7 +31,7 @@ const LineChartArea = () => {
     const [searchParams] = useSearchParams();
     const { marketData, fetching, error } = useSelector((state) => state.coinMarketChart);
     const [coinPrice, setCoinPrice] = useState(null);
-    const [coinGradient, setCoinGradient] = useState(null);
+    const [coinDelta, setCoinDelta] = useState(null);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -39,9 +39,16 @@ const LineChartArea = () => {
     }, [dispatch, searchParams]);
 
     useEffect(() => {
-        if (marketData.prices.length > 0) {
-            setCoinPrice(marketData.prices[marketData.prices.length - 1][1]);
-            setCoinGradient(marketData.prices[marketData.prices.length - 1][1] / marketData.prices[0][1] - 1);
+        if (marketData.prices.length > 2) {
+            const firstPrice = marketData.prices[0][1];
+            const lastPrice = marketData.prices[marketData.prices.length - 1][1];
+            const percentageChange = ((lastPrice - firstPrice) / firstPrice) * 100;
+            if (lastPrice > 0.1) {
+                setCoinPrice(lastPrice.toFixed(2));
+            } else {
+                setCoinPrice(lastPrice.toFixed(6));
+            }
+            setCoinDelta(percentageChange.toFixed(2));
         }
     }, [marketData.prices]);
 
@@ -60,7 +67,7 @@ const LineChartArea = () => {
                 label: marketData.name,
                 data: marketData.prices.map((price) => price[1]),
                 borderColor: 'rgb(255, 214, 10)',
-                backgroundColor: 'rgb(3, 49, 83)',
+                backgroundColor: 'rgba(3, 49, 83, 0.5)',
                 fill: true
             }
         ],
@@ -144,24 +151,21 @@ const LineChartArea = () => {
         }
     };
 
-    const getRoundDigit = (num) => {
-        let reverseNum = 1 / num;
-        if (reverseNum < 0) {
-            return 100;
-        } else {
-            reverseNum = Math.round(reverseNum);
-            return 10 ** (reverseNum.toString().length + 2);
-        }
-    }
-
     const percentFormat = new Intl.NumberFormat('en-US', {
         style: 'percent',
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
     });
-    const roundDigit = getRoundDigit(coinPrice);
-    const roundDigit1 = getRoundDigit(coinGradient);
-    const displayedCoinGradient = Math.round((coinGradient + Number.EPSILON) * roundDigit1) / roundDigit1;
+
+    const getCoinDeltaClass = (coinDelta) => {
+        if (coinDelta > 0) {
+            return 'text-success';
+        } else if (coinDelta < 0) {
+            return 'text-danger';
+        } else {
+            return 'text-secondary';
+        }
+    };
 
     if (error) {
         return <h4>
@@ -176,34 +180,17 @@ const LineChartArea = () => {
         <div className="d-flex flex-column mt-2">
             <div id={"timeRangeNavigation"} className={"d-flex mt-2"}>
                 <h3 className={"fw-bold ms-5 d-none d-sm-block"}><i
-                    className="fa-solid fa-dollar-sign"></i>{Math.round(
-                    (coinPrice + Number.EPSILON) * roundDigit) / roundDigit}</h3>
-                <h3 className={`ms-3 d-none d-sm-block ${displayedCoinGradient > 0 ?
-                                                         'text-success' : ''
-                                                                          || displayedCoinGradient
-                                                                          < 0 ?
-                                                                          'text-danger' : ''
-                                                                                          || displayedCoinGradient
-                                                                                          === 0 ?
-                                                                                          'text-secondary'
-                                                                                                : ''}`}>
-                    {displayedCoinGradient > 0 ? '+' : ''}
-                    {percentFormat.format(displayedCoinGradient)}
+                    className="fa-solid fa-dollar-sign"></i>{coinPrice}</h3>
+                <h3 className={`ms-3 d-none d-sm-block ${getCoinDeltaClass(coinDelta)}`}>
+                    {coinDelta > 0 ? '+' : ''}
+                    {percentFormat.format(coinDelta / 100)}
                 </h3>
                 <div id={"small-figures"} className={"d-flex flex-column d-block d-sm-none"}>
                     <h3 className={"fw-bold ms-3"}><i
-                        className="fa-solid fa-dollar-sign"></i>{Math.round(
-                        (coinPrice + Number.EPSILON) * roundDigit) / roundDigit}</h3>
-                    <h3 className={`ms-3 ${displayedCoinGradient > 0 ?
-                                           'text-success' : ''
-                                                            || displayedCoinGradient < 0 ?
-                                                            'text-danger' : ''
-                                                                            || displayedCoinGradient
-                                                                            === 0 ?
-                                                                            'text-secondary'
-                                                                                  : ''}`}>
-                        {displayedCoinGradient > 0 ? '+' : ''}
-                        {percentFormat.format(displayedCoinGradient)}
+                        className="fa-solid fa-dollar-sign"></i>{coinPrice}</h3>
+                    <h3 className={`ms-3 ${getCoinDeltaClass(coinDelta)}`}>
+                        {coinDelta > 0 ? '+' : ''}
+                        {percentFormat.format(coinDelta / 100)}
                     </h3>
                 </div>
                 <ul className="nav nav-pills ms-auto h-sm-100 h-50">

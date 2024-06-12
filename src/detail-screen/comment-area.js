@@ -24,22 +24,18 @@ const CommentArea = ({objectType}) => {
     reverseComment.reverse();
 
     return (
-        <section id="comments" className={"vh-100 container justify-content-center pe-0"}>
+        <section id="comments" className={"container justify-content-center pe-0"}>
             <h3>{Object.keys(comments).length} Comments</h3>
             <ComposeComment objectType={objectType}/>
-            <div className={"list-group border-top overflow-auto h-100 pe-0"}>
+            <div className={"list-group border-top overflow-auto pe-0"}>
                 {
                     reverseComment.map(
                         comment => <CommentItem key={comment.commentID} comment={comment}/>
                     )
                 }
             </div>
-
-
         </section>
-
     );
-
 }
 
 export default CommentArea;

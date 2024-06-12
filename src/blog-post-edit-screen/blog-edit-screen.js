@@ -3,6 +3,7 @@ import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {updateABlogThunk} from "../services/blog-thunk";
 
+
 const BlogEditScreen = () => {
     const {currentUser} = useSelector(state => state.users);
     const {curBlog, fetching} = useSelector(state => state.blogs);
@@ -59,28 +60,38 @@ const BlogEditScreen = () => {
 
     return (
 
-        <form className={"container col-xxl-6 col-xl-7 col-lg-8 col-md-9 col-sm-12 col-12"} onSubmit={handleSubmit}>
+        <form className={"container col-xxl-6 col-xl-7 col-lg-8 col-md-9 col-sm-12 col-12 mt-5"}
+              onSubmit={handleSubmit}>
             <div className={"form-group"}>
                 <label htmlFor={"title"}>
                     Title:
                 </label>
-                <input id={"title"} className={"form-control"} type="text" value={title} onChange={handleTitleChange} />
+                <input id={"title"} className={"form-control"} type="text" value={title}
+                       onChange={handleTitleChange}/>
             </div>
             <div className={"form-group"}>
                 <label htmlFor={"content"}>
                     Content:
                 </label>
-                <textarea id={"content"} rows="15" className={"form-control wd-textarea-resize-none"} value={content} onChange={handleContentChange} />
+                <textarea id={"content"} rows="15"
+                          className={"form-control wd-textarea-resize-none"} value={content}
+                          onChange={handleContentChange}/>
             </div>
-            <button type="submit"
-                    className="btn wd-btn-style w-100 mt-2" >
-                Update
-            </button>
+            <div className="d-flex">
+                <button type="submit"
+                        className="btn btn-danger flex-grow-1 me-2 mt-2 pe-3">
+                    Cancel
+                </button>
+                <button type="button"
+                        onClick={() => navigate({ pathname: '../blog',
+                                              search: "blogID="+curBlog._id})}
+                        className="btn wd-btn-style flex-grow-1 mt-2">
+                    Update
+                </button>
+            </div>
         </form>
 
     );
-
 }
-
 
 export default BlogEditScreen;
