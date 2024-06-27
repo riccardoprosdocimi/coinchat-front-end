@@ -84,7 +84,7 @@ const Register = () => {
     };
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const handleRegisterBtn = () => {
+    const handleRegisterBtn = async () => {
         if (firstName === '') {
             setErrorMessage('Please enter your first name');
         } else if (lastName === '') {
@@ -124,11 +124,16 @@ const Register = () => {
                 "password": hashedPassword,
                 "role": accountType
             };
-            dispatch(registerThunk(newUser));
-            if (error === 'Request failed with status code 403') {
-                setErrorMessage('User already existing')
-            } else if (!loading) {
-                navigate('/profile');
+            try {
+                await dispatch(registerThunk(newUser)).unwrap();
+                if (!loading && !currentUser && error) {
+                    setErrorMessage('Handle already exists. Please choose another one.')
+                } else if (!loading && currentUser) {
+                    setErrorMessage(null)
+                    navigate('/profile');
+                }
+            } catch (error) {
+                setErrorMessage('Handle already exists. Please choose another one.')
             }
         }
     };
@@ -137,7 +142,7 @@ const Register = () => {
         return(<Navigate to={'/profile'}/>);
     } else {
         return(
-            <div className="container w-50 mb-5">
+            <div className="container w-100 mb-1">
                 <h1 className="fw-bolder mt-2 text-center">
                     Create your CoinChat account
                 </h1>
@@ -387,8 +392,17 @@ const Register = () => {
                     <div className="d-flex justify-content-center">
                         <button type="button"
                                 className="btn btn-lg wd-btn-style rounded-pill mt-2 w-75 wd-font"
-                                onClick={handleRegisterBtn}>
-                            Create free account
+                                onClick={handleRegisterBtn}
+                                disabled={loading}>
+                            {
+                                loading ? (
+                                    <>
+                                        <i className="fas fa-spinner fa-spin"/> Loading...
+                                    </>
+                                ) : (
+                                    "Create free account"
+                                )
+                            }
                         </button>
                     </div>
                 </div>

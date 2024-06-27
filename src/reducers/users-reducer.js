@@ -32,6 +32,7 @@ const UsersReducer = createSlice({
              .addCase(registerThunk.pending, (state) => {
                  state.loading = true;
                  state.currentUser = null;
+                 state.error = null;
              })
              .addCase(registerThunk.fulfilled, (state, action) => {
                  state.loading = false;

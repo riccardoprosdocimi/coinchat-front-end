@@ -40,6 +40,7 @@ const Profile = () => {
         dispatch(findBlogByAuthorIDThunk(currentUser._id))
         dispatch(getCommentsByAuthorIDThunk(currentUser._id))
     }, [dispatch, currentUser, updateFlag]);
+
     return (
         <div className={'row mb-5'}>
             <div className="col-xl-3 col-lg-3 col-md-4 mt-2">
